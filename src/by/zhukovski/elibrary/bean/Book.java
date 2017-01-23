@@ -12,6 +12,9 @@ public class Book implements Serializable{
     private int year;
     private String description;
     private String content;
+    private String errorMessage;
+    private boolean isError = false;
+    int id;
 
     public String getTitle() {
         return title;
@@ -53,6 +56,15 @@ public class Book implements Serializable{
         this.content = content;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
     @Override
     public boolean equals(Object o){
         if (o == null) return false;
@@ -60,7 +72,7 @@ public class Book implements Serializable{
         if (this.getClass() == o.getClass()){
             Book b = (Book) o;
             if (this.author == b.author && this.content == b.content && this.description == b.description &&
-                    this.title == b.title && this.year == b.year) return true;
+                    this.title == b.title && this.year == b.year && this.id == b.id) return true;
         }
 
         return false;
@@ -75,6 +87,7 @@ public class Book implements Serializable{
         result = result + year*prime;
         result = result + description.hashCode()*prime;
         result = result + content.hashCode()*prime;
+        result = result + id*prime;
 
         return result;
     }
